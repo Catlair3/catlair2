@@ -1,0 +1,60 @@
+import asyncio
+import logging
+from aiogram import Bot, Dispatcher, types
+from aiogram.filters.command import Command
+from aiogram.types.input_file import FSInputFile
+
+
+# Включаем логирование, чтобы не пропустить важные сообщения
+logging.basicConfig(level=logging.INFO)
+# Объект бота
+bot = Bot(token="7041269766:AAGwuad04YFq9nqnrw43NzreJ5gmIe4ldDE")
+# Диспетчер
+dp = Dispatcher()
+
+# Хэндлер на команду /start
+@dp.message(Command("start"))
+async def cmd_start(message: types.Message):
+    await message.answer("Привет я бот по предложке игр по жанрам. Выбери жанр и напиши его со знаком / перед жанром:\nshutery\nrace\nstrategya\nCRMP\nact\narcade")
+
+@dp.message(Command("shutery"))
+async def cmd_start(message: types.Message):
+    img1 = FSInputFile(r'C:\Users\user\PycharmProjects\pythonProject2\1.jpg')
+    await message.answer_photo(caption='Например игра: CS GO', photo=img1)
+
+@dp.message(Command("race"))
+async def cmd_start(message: types.Message):
+    img2 = FSInputFile(r'C:\Users\user\PycharmProjects\pythonProject2\race.race.jpeg')
+
+    await message.answer_photo(photo=img2, caption='Gran Turismo')
+
+@dp.message(Command("CRMP"))
+async def cmd_start(message: types.Message):
+        img3 = FSInputFile(r'C:\Users\user\PycharmProjects\pythonProject2\2.jpg')
+
+        await message.answer_photo(photo=img3, caption='Black Russia')
+
+
+
+@dp.message(Command("arcade"))
+async def cmd_start(message: types.Message):
+        img5 = FSInputFile(r'C:\Users\user\PycharmProjects\pythonProject2\undert.jpg')
+
+        await message.answer_photo(photo=img5, caption='Игра Undertale')
+
+@dp.message(Command("act"))
+async def cmd_start(message: types.Message):
+        img6 = FSInputFile(r'C:\Users\user\PycharmProjects\pythonProject2\4.jpg')
+        await message.answer_photo(photo=img6, caption='GTA 5')
+
+@dp.message(Command("strategya"))
+async def cmd_start(message: types.Message):
+        img7 = FSInputFile(r'C:\Users\user\PycharmProjects\pythonProject2\3.jpg')
+        await message.answer_photo(photo=img7 , caption='Clash of Clans')
+
+# Запуск процесса поллинга новых апдейтов
+async def main():
+    await dp.start_polling(bot)
+
+if __name__ == "__main__":
+    asyncio.run(main())
